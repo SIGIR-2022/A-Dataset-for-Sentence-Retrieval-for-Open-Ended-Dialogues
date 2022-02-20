@@ -1,4 +1,4 @@
-# # A-Dataset-for-Sentence-Retrieval-for-Open-Ended-Dialogues
+# A-Dataset-for-Sentence-Retrieval-for-Open-Ended-Dialogues
 
 Our research focuses on sentence retrieval for dialogues and specifically on the search for sentences that can be used for generating next turns in dialogues. 
 
