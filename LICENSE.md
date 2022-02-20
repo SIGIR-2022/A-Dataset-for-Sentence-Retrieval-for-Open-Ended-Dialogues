@@ -1,4 +1,4 @@
-Copyright (c) 2022.
+Copyright (c) 2022 A-Dataset-for-Sentence-Retrieval-for-Open-Ended-Dialogues 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
