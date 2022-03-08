@@ -28,7 +28,7 @@ We used 3 repositories based on 5,636,036 Wikipedia papers: documents, sentences
 For each dialogue, we propose a ranked list of 50 candidate sentences from Wikipedia. The ranked lists were produced by an initial ranker as described in our paper. 
 ## Human Evaluation
 
-To obtain human evaluations for the relevance of each candidate, we used the Amazon Mechanical Turk platform. We recruited [master] (https://www.mturk.com/worker/help#what_is_master_worker) workers and considered only the ratings that came from raters that succeeded in our honeypots.
+To obtain human evaluations for the relevance of each candidate, we used the Amazon Mechanical Turk platform. We recruited [master](https://www.mturk.com/worker/help#what_is_master_worker) workers and considered only the ratings that came from raters that succeeded in our honeypots.
 
 The dataset contains only dialogues with at least one relevant sentence, according to the workers.
 ## Dataset
