@@ -7,9 +7,9 @@ To the best of our knowledge, there is no publicly available dataset for this ta
 
 A dialogue is considered valid for our validation and test sets if it is conducted between two users A and B with no less than 4 turns. User A is the user who turns the initial question in the dialogue and User B can be anyone else. 
 
-The last turn in the dialogue must belong to User B and may link to sections in Wikipedia. Dialogues whose last turn contains any link to Wikipedia are called Wikipedia grounded dialogues, and others are simply called dialogues.
+The last turn in the dialogue must belong to User B and may link to sections in Wikipedia. Dialogues whose last turn contains a link to Wikipedia are called Wikipedia grounded dialogues, and others are simply called dialogues.
 
-We excluded a large number of instances where:
+We excluded a large number of dialogues where:
 
 - The language of the dialogue is not English
 
@@ -17,18 +17,18 @@ We excluded a large number of instances where:
 
 - The content of the dialogue includes words from  a public [list](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/blob/master/en) of dirty words. We also expanded this list by concatenating all the phrases found there
 
-- The turns contain URLs, except the last turns in Wikipedia grounded dialogues which point to sections that can be found in our Wikipedia corpus
+- The turns contain URLs, except the last turns in Wikipedia grounded dialogues, which point to sections that can be found in our Wikipedia corpus
 
 - There is a turn that is shorter than 5 tokens and longer than 70 tokens
 
 ## Candidates
 
-We created 3 repositories based on 5,636,036 Wikipedia papers: documents, sentences and sections. We used [Wikipedia dumps](https://dumps.wikimedia.org/enwiki/20200101/enwiki-20200101-pages-articles-multistream.xml.bz2), while the majority of the parsing process was handled by an [external package](https://github.com/attardi/wikiextractor.git) from 2020-01-01 and we have made improvements manually.
+We used 3 repositories based on 5,636,036 Wikipedia papers: documents, sentences and sections. We used [Wikipedia dumps](https://dumps.wikimedia.org/enwiki/) from 2020-01-01, while the majority of the parsing process was handled by an [external package](https://github.com/attardi/wikiextractor.git) and we have made improvements manually.
 
-For each dialogue, we propose a ranked list of 50 candidate sentences from Wikipedia. 
+For each dialogue, we propose a ranked list of 50 candidate sentences from Wikipedia. The ranked lists were produced by an initial ranker as described in our paper. 
 ## Human Evaluation
 
-To obtain human evaluations for the relevance of each candidate, we used the Amazon Mechanical Turk platform. We recruited “master” workers and used only the submissions from those who read the instructions for the task, as indicated by their success in our honeypots.
+To obtain human evaluations for the relevance of each candidate, we used the Amazon Mechanical Turk platform. We recruited [master] (https://www.mturk.com/worker/help#what_is_master_worker) workers and considered only the ratings that came from raters that succeeded in our honeypots.
 
 The dataset contains only dialogues with at least one relevant sentence, according to the workers.
 ## Dataset
@@ -43,19 +43,19 @@ We split the data into two files:
 
 Each dialogue in our dataset is represented by a dictionary object as detailed below:
 
-- id - the dialogue ID which is composed of the subreddit ID and the submission ID
-- subreddit - the web forum of a particular topic in Reddit
-- title - the title of the dialogue as written by User A
-- target - in dialogues is simply the last turn, and in Wikipedia grounded dialogues is the first turn that contains a link to a section from Wikipedia in a turn whose number is no less than 4
-- context - list of turns that precede the target turn. Every turn in the context, including the target, is represented by the following dictionary:
-    - author_id - the ID of the author of the turn
-    - author_name - the author name
-    - body - the text of the turn
-    - score - the number of upvotes minus the number of downvotes given to the turn on Reddit
+- id - The dialogue ID which is composed of the subreddit ID and the submission ID
+- subreddit - The web forum of a particular topic in Reddit
+- title - The title of the dialogue as written by User A
+- target - In dialogues is simply the last turn. In Wikipedia grounded dialogues is the first turn that contains a link to a section from Wikipedia in a turn that it is preceded by at least 3 turns
+- context - List of turns that precede the target turn. Every turn in the context, including the target, is represented by the following dictionary:
+    - author_id - The ID of the author of the turn
+    - author_name - The author name
+    - body - The text of the turn
+    - score - The number of upvotes minus the number of downvotes given to the turn on Reddit
 
 - candidates - a dictionary object whose keys are “pos” and “neg” and their values are lists of relevant and non-relevant candidates, respectively. Each candidate is represented by the following dictionary:
 
-    - id - the sentence ID which is composed of the document ID, section ID, passage ID, sentence ID and the paper title to which the sentence belongs
-    - title - the paper title to which the sentence belongs
-    - body - the text of the sentence
-    - score - the sentence score computed by the initial ranker
+    - id - The sentence ID which is composed of the document title, document ID, section ID, passage ID, sentence ID and the paper title to which the sentence belongs
+    - title - The paper title to which the sentence belongs
+    - body - The text of the sentence
+    - score - The sentence score computed by the initial ranker
