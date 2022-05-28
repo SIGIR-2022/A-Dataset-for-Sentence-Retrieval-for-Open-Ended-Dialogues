@@ -53,9 +53,10 @@ Each dialogue in our dataset is represented by a dictionary object as detailed b
     - body - The text of the turn
     - score - The number of upvotes minus the number of downvotes given to the turn on Reddit
 
-- candidates - a dictionary object whose keys are “pos” and “neg” and their values are lists of relevant and non-relevant candidates, respectively. Each candidate is represented by the following dictionary:
+- candidates - The initial sentence ranking list. Each candidate is represented by the following dictionary:
 
     - id - The sentence ID which is composed of the document title, document ID, section ID, passage ID, sentence ID and the paper title to which the sentence belongs
     - title - The paper title to which the sentence belongs
     - body - The text of the sentence
     - score - The sentence score computed by the initial ranker
+    - label - 1 if relevant; otherwise non-relevant
